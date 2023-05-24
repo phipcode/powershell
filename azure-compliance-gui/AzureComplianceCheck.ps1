@@ -95,7 +95,7 @@ $tenantLabel.Text = "Selected Tenant: $((Get-AzContext).Tenant.Id)"
 $subscriptionLabel.Text = "Selected Subscription:"
 
 # Read subscriptions from a text file and populate the list box
-$subscriptions = Get-Content -Path "C:\repo\phipcode\powershell\azure-compliance-gui\Subscriptions.txt"
+$subscriptions = Get-Content -Path "C:\Users\ppham\repo\phipcode\powershell\azure-compliance-gui\subscriptions.txt"
 $listBox.Items.AddRange($subscriptions)
 
 
@@ -152,8 +152,8 @@ $scanButton.Add_Click({
             $outputPane.AppendText("`n")
         }
 
-        $job = Start-Job -ScriptBlock $scanTask -ArgumentList $outputPane, $selectedSubscription
-        $job | Wait-Job | Receive-Job
+        # $job = Start-Job -ScriptBlock $scanTask -ArgumentList $outputPane, $selectedSubscription
+        # $job | Wait-Job | Receive-Job
         UpdateJobListView
     } else {
         $outputPane.AppendText("Please select a subscription before starting the scan`n")
