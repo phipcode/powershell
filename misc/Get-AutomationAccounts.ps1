@@ -1,3 +1,37 @@
+<#
+.SYNOPSIS
+    This script retrieves specific variables from Azure Automation accounts across multiple subscriptions 
+    based on a provided CSV file and exports the matching results to a CSV file.
+
+.DESCRIPTION
+    This script queries multiple Azure subscriptions to find matching variables in Azure Automation accounts. 
+    It loads a CSV file containing variable names and subscription names to compare against. 
+    The script iterates through each subscription, retrieves the Automation accounts, and examines the variables within each account. 
+    If a match is found between a variable name and subscription name in the loaded CSV file, the variable information,
+    along with the associated Automation account, subscription, and resource group, is stored in an array.
+    The matching results are then displayed as a table on the console and exported to a CSV file named "matchingResults.csv".
+
+.NOTES
+    Author: Phi Pham
+    Date:   June 8, 2023
+
+.EXAMPLE
+    Example file for $variableNamesFile 
+    VariableName	    SubscriptionName
+    webappname	        Subscription Prod
+    test_sb_string	    Subscription Non-Prod
+    subscriptionid	    Subscription WAN
+    resourcegroupname	Subscription WAN
+    elasticjobconfig	Subscription Non-Prod
+    elasticjobconfig	Subscription Prod
+    detdbaconfig	    SubscriptionNon-Prod
+    detdbaconfig	    Subscription Prod
+
+
+.LINK
+    Any relevant links or references.
+
+#>
 # Retrieve all subscriptions
 $subscriptions = Get-AzSubscription | Where-Object { $_.Name -notlike "*Azure*" -and $_.State -eq "Enabled" }
 

@@ -1,3 +1,23 @@
+<#
+.SYNOPSIS
+    This script retrieves information about unattached disks from multiple Azure subscriptions and exports the results to a CSV file.
+
+.DESCRIPTION
+    This script queries multiple Azure subscriptions to identify unattached disks. It retrieves 
+    information such as subscription details, disk properties (name, size, state, location), associated owners, 
+    and resource group. The script then converts the disk tags into a string representation. 
+    The collected information is stored in an array and exported to a CSV file named "UnattachedDisks.csv". 
+    A confirmation message is displayed upon successful completion.
+
+.NOTES
+    Author: Phi Pham
+    Date:   June 8, 2023
+
+.LINK
+   
+
+#>
+
 # Retrieve all subscriptions
 $subscriptions = Get-AzSubscription | Where-Object { $_.Name -notlike "*Azure*" -and $_.State -eq "Enabled" }
 

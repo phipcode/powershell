@@ -1,5 +1,25 @@
+<#
+.SYNOPSIS
+    This script retrieves the resource group name for a resource from a CSV file
+
+.DESCRIPTION
+    This script retrieves the resource group name for a resource. It imports a CSV file 
+    which has 2 columns "resourceName" & "subscription". It loops through each row and 
+    retrieves the resource grouyp name using the Azure PowerShell module. It then appends the resource group
+    name to the CSV data. The updated data is then displayed on the console as a table and exported
+    to a new CSV file.
+
+.NOTES
+    Author: Phi Pham
+    Date:   June 8, 2023
+
+.LINK
+    Any relevant links or references.
+
+#>
+
 # Import the CSV file
-$csv = Import-Csv -Path 'C:\Users\ppham\repo\doe\storageaccounts.csv'
+$csv = Import-Csv -Path 'C:\Users\ppham\repo\doe\resources.csv'
 
 
 # Initialize a variable to store the current subscription context

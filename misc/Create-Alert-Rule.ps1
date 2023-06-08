@@ -1,4 +1,22 @@
+<#
+.SYNOPSIS
+    This script creates an activity log alert in Azure subscriptions and resource groups based on predefined settings.
 
+.DESCRIPTION
+    This script creates an activity log alert in Azure subscriptions and resource groups based on specific settings provided. 
+    It uses a predefined hashtable called $subscriptionResourceGroups to map subscription IDs to their respective resource group names. 
+    The script iterates through each subscription and sets the current subscription context. 
+    It then retrieves the corresponding resource group name from the hashtable and uses it to create an activity log alert in the subscription 
+    and resource group using the Azure CLI (az). The script loops through all the subscription IDs and performs the same action for each one.
+
+.NOTES
+    Author: Phi Pham
+    Date:   June 8, 2023
+
+.LINK
+    Any relevant links or references.
+
+#>
 $subscriptionResourceGroups = @{
 
     "123456-cedb-4ae4-b809-1235566" = "NSWDoE_Networking_Alerts_MGMT_RG" # DoE IS Networking - Exempt
