@@ -99,14 +99,15 @@ $form.Controls.Add($tenantLabel)
 
 $subscriptionLabel = New-Object System.Windows.Forms.Label
 $subscriptionLabel.Location = New-Object System.Drawing.Point(10, 730)
-$subscriptionLabel.Size = New-Object System.Drawing.Size(380, 20)
+$subscriptionLabel.Size = New-Object System.Drawing.Size(380, 50)
 $form.Controls.Add($subscriptionLabel)
 
 # Update the labels with user, tenant, and subscription information
 $userLabel.Text = "Logged-in User: $((Get-AzContext).Account.Id)"
 $tenantLabel.Text = "Selected Tenant: $((Get-AzContext).Tenant.Id)"
-$subscriptionLabel.Text = "Selected Subscription:"
+$subscriptionName = (Get-AzContext).Subscription.Name -replace ' \(.+\)',''
 
+$subscriptionLabel.Text = "Selected Subscription: " + $subscriptionName
 # Read subscriptions from a text file and populate the list box
 $subscriptions = Get-Content -Path "C:\Users\ppham\repo\phipcode\powershell\azure-compliance-gui\subscriptions.txt"
 $listBox.Items.AddRange($subscriptions)
